@@ -1,5 +1,7 @@
 package org.jdbc;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,14 +27,20 @@ public class InsertData {
                 //get PreparedStatement object
                 PreparedStatement insertstmt = con.prepareStatement(insertquery);
                 //set dynamic values
-                insertstmt.setString(1, "Seetal");
-                insertstmt.setString(2, "Cuttack");
-                insertstmt.setInt(3, 80000);
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("Enter Name : ");
+                String name = br.readLine();
+                System.out.println("Enter City : ");
+                String city = br.readLine();
+                System.out.println("Enter Salary : ");
+                String ssalary = br.readLine();
+                int salary = Integer.parseInt(ssalary);
+                insertstmt.setString(1, name);
+                insertstmt.setString(2, city);
+                insertstmt.setInt(3, salary);
                 insertstmt.executeUpdate();
                 System.out.println("Data Inserted");
-
             }
-
             con.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
