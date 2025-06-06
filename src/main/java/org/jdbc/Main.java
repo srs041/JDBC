@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 
 public class Main {
     public static void main(String[] args) {
+
+        //This code is for  06th june branch
         String url = "jdbc:mysql://localhost:3306/employeedb";
         String username = "root";
         String password = "Csgo1234@";
