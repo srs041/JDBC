@@ -3,7 +3,6 @@ package org.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 
 public class InsertData {
     public static void main(String[] args) {
