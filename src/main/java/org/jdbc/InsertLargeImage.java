@@ -1,10 +1,12 @@
 package org.jdbc;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class InsertImage {
+public class InsertLargeImage {
     public static void main(String[] args) {
 
         try {
@@ -17,12 +19,19 @@ public class InsertImage {
                 String picquery = "insert into pictures(pic) values(?)";
 
                 PreparedStatement picstmt = con.prepareStatement(picquery);
-                //Give your path where you have the image
-                FileInputStream fis = new FileInputStream("C:\\Users\\Seetal\\IdeaProjects\\JDBC\\src\\main\\resources\\eye.jpg");
-                picstmt.setBinaryStream(1, fis, fis.available());
+                //Choose a file
+                JFileChooser jfc=new JFileChooser();
 
+                jfc.showOpenDialog(null);
+
+                File f=jfc.getSelectedFile();
+
+                FileInputStream fis=new FileInputStream(f);
+
+                picstmt.setBinaryStream(1,fis,fis.available());
                 picstmt.executeUpdate();
 
+                JOptionPane.showMessageDialog(null,"Success");
                 System.out.println("Image Inserted");
             }
             con.close();

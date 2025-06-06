@@ -3,21 +3,13 @@ package org.jdbc;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class InsertData {
     public static void main(String[] args) {
 
-        //This code is for  06th june branch
-        String url = "jdbc:mysql://localhost:3306/employeedb";
-        String username = "root";
-        String password = "Csgo1234@";
         try {
-            //load the driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //Create connection
-            Connection con = DriverManager.getConnection(url, username, password);
+            Connection con = ConnectionProvider.getConnetion();
             if (con.isClosed()) {
                 System.out.println("Connection Closed");
             } else {
@@ -34,10 +26,10 @@ public class InsertData {
                 String city = br.readLine();
                 System.out.println("Enter Salary : ");
                 String ssalary = br.readLine();
-                int salary = Integer.parseInt(ssalary);
+                float salary = Float.parseFloat(ssalary);
                 insertstmt.setString(1, name);
                 insertstmt.setString(2, city);
-                insertstmt.setInt(3, salary);
+                insertstmt.setFloat(3, salary);
                 insertstmt.executeUpdate();
                 System.out.println("Data Inserted");
             }
